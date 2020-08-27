@@ -4,9 +4,10 @@
 __author__ = "MiaoYan"
 __email__ = "miaoy2018@lzu.edu.com"
 
-#pip3 install lxml
-#pip3 install ps4
-#pip3 install selenium
+#pip3 install requests
+#pip3 install re
+#pip3 install csv
+#然后安装urllib之类的库
 
 ########
 import requests
@@ -76,10 +77,6 @@ def get_onepage_html(be=0,st=30,l_before=[]):
     for i in items:
         dic={}
         dic["房名"]=i[2]
-        dic["照片"]=i[0]
-        dic["描述"]=i[3]
-        dic["其他"]=i[4]
-        dic["价格"]=i[5]
         add=i[1]
         url=urlunsplit([scheme,path+add,'','',''])
         print(url)
@@ -91,6 +88,10 @@ def get_onepage_html(be=0,st=30,l_before=[]):
         s=re.findall(pattern,html)[0]
         dic["地址"]=s
         print(s)
+        dic["照片"]=i[0]
+        dic["描述"]=i[3]
+        dic["其他"]=i[4]
+        dic["价格"]=i[5]
         if dic in l_before:
             break
         add_l.append(dic)
